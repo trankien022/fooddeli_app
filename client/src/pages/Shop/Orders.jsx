@@ -80,10 +80,11 @@ const StatCard = ({ label, value, color, icon }) => (
   <Paper
     elevation={0}
     sx={{
-      borderRadius: '14px',
+      borderRadius: { xs: '12px', sm: '14px' },
       border: '0.8px solid rgba(0,0,0,0.08)',
-      p: 2.2,
-      height: 96,
+      p: { xs: 2.5, sm: 2.5 },
+      height: { xs: 'auto', sm: 100 },
+      minHeight: { xs: 90, sm: 100 },
       background: 'linear-gradient(180deg, #ffffff 0%, #fdfdfd 100%)',
       transition: 'box-shadow 200ms ease, transform 200ms ease',
       '&:hover': {
@@ -93,14 +94,19 @@ const StatCard = ({ label, value, color, icon }) => (
     }}
   >
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <Box>
-        <Typography sx={{ color: '#717182', fontSize: 13 }}>{label}</Typography>
-        <Typography sx={{ fontWeight: 800, fontSize: 26, color, letterSpacing: '-0.2px' }}>{value}</Typography>
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography sx={{ color: '#717182', fontSize: { xs: 13, sm: 14 }, fontWeight: 500, letterSpacing: '0.01em', mb: 0.5 }}>{label}</Typography>
+        <Typography sx={{ fontWeight: 800, fontSize: { xs: 26, sm: 28 }, color, letterSpacing: '-0.02em' }}>{value}</Typography>
       </Box>
       <Box sx={{
-        width: 40, height: 40, borderRadius: '12px',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        backgroundColor: `${color}1a` // 10% tint
+        width: { xs: 42, sm: 44 }, 
+        height: { xs: 42, sm: 44 }, 
+        borderRadius: { xs: '10px', sm: '12px' },
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        backgroundColor: `${color}1a`, // 10% tint
+        flexShrink: 0
       }}>
         {icon}
       </Box>
@@ -114,7 +120,7 @@ const StatusBadge = ({ status }) => {
       <Chip
         label={STATUS.PENDING}
         size="small"
-        sx={{ backgroundColor: '#fef9c2', color: '#894b00', borderRadius: '8px', height: 21, fontSize: 12 }}
+        sx={{ backgroundColor: '#fef9c2', color: '#894b00', borderRadius: '8px', height: { xs: 24, sm: 22 }, fontSize: { xs: 13, sm: 12 }, fontWeight: 600, px: { xs: 0.5, sm: 0 } }}
       />
     );
   }
@@ -123,7 +129,7 @@ const StatusBadge = ({ status }) => {
       <Chip
         label={STATUS.COOKING}
         size="small"
-        sx={{ backgroundColor: '#dbe7ff', color: '#193cb8', borderRadius: '8px', height: 21, fontSize: 12 }}
+        sx={{ backgroundColor: '#dbe7ff', color: '#193cb8', borderRadius: '8px', height: { xs: 24, sm: 22 }, fontSize: { xs: 13, sm: 12 }, fontWeight: 600, px: { xs: 0.5, sm: 0 } }}
       />
     );
   }
@@ -131,7 +137,7 @@ const StatusBadge = ({ status }) => {
     <Chip
       label={STATUS.DONE}
       size="small"
-      sx={{ backgroundColor: '#dcfce7', color: '#016630', borderRadius: '8px', height: 21, fontSize: 12 }}
+      sx={{ backgroundColor: '#dcfce7', color: '#016630', borderRadius: '8px', height: { xs: 24, sm: 22 }, fontSize: { xs: 13, sm: 12 }, fontWeight: 600, px: { xs: 0.5, sm: 0 } }}
     />
   );
 };
@@ -147,24 +153,24 @@ const OrderCard = ({ order, onAdvance }) => {
   <Paper
     elevation={0}
     sx={{
-      borderRadius: '14px',
+      borderRadius: { xs: '12px', sm: '14px' },
       border: '0.8px solid rgba(0,0,0,0.1)',
       p: 0,
       overflow: 'hidden'
     }}
   >
-    <Box sx={{ px: 3, pt: 3 }}>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Stack direction="row" alignItems="center" spacing={1.5}>
-          <Typography sx={{ fontSize: 18, fontWeight: 700 }}>{order.id}</Typography>
+    <Box sx={{ px: { xs: 2.5, sm: 3 }, pt: { xs: 2.5, sm: 3 } }}>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: { xs: 1.5, sm: 2 } }}>
+        <Stack direction="row" alignItems="center" spacing={{ xs: 1.2, sm: 1.5 }}>
+          <Typography sx={{ fontSize: { xs: 17, sm: 18 }, fontWeight: 700, letterSpacing: '-0.01em', color: '#18181b' }}>{order.id}</Typography>
           <StatusBadge status={order.status} />
         </Stack>
-        <Typography sx={{ fontSize: 14, color: '#717182' }}>{order.createdAgo}</Typography>
+        <Typography sx={{ fontSize: { xs: 13, sm: 14 }, color: '#717182', fontWeight: 500, letterSpacing: '0.01em' }}>{order.createdAgo}</Typography>
       </Stack>
-      <Box sx={{ height: 8, backgroundColor: 'rgba(3,2,19,0.12)', borderRadius: 99, mt: 2, overflow: 'hidden' }}>
+      <Box sx={{ height: { xs: 9, sm: 8 }, backgroundColor: 'rgba(3,2,19,0.12)', borderRadius: 99, overflow: 'hidden' }}>
         <Box
           sx={{
-            height: 8,
+            height: '100%',
             borderRadius: 99,
             backgroundColor: color,
             width: `${pct}%`,
@@ -174,51 +180,51 @@ const OrderCard = ({ order, onAdvance }) => {
       </Box>
     </Box>
 
-    <Box sx={{ px: 3, py: 2 }}>
-      <Grid container spacing={2}>
+    <Box sx={{ px: { xs: 2.5, sm: 3 }, py: { xs: 2, sm: 2 } }}>
+      <Grid container spacing={{ xs: 2, sm: 2 }}>
         <Grid item xs={12} md={6}>
-          <Stack spacing={1.5}>
+          <Stack spacing={{ xs: 1.2, sm: 1.5 }}>
             <Stack direction="row" alignItems="center" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb' }} />
-              <Typography sx={{ fontSize: 14 }}>{order.customer.name}</Typography>
+              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb', flexShrink: 0 }} />
+              <Typography sx={{ fontSize: { xs: 14, sm: 14 }, wordBreak: 'break-word', fontWeight: 500, letterSpacing: '0.01em' }}>{order.customer.name}</Typography>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb' }} />
-              <Typography sx={{ fontSize: 14 }}>{order.customer.phone}</Typography>
+              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb', flexShrink: 0 }} />
+              <Typography sx={{ fontSize: { xs: 14, sm: 14 }, wordBreak: 'break-word', letterSpacing: '0.01em' }}>{order.customer.phone}</Typography>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb' }} />
-              <Typography sx={{ fontSize: 14 }}>{order.customer.address}</Typography>
+              <Box sx={{ width: 16, height: 16, borderRadius: 0.5, backgroundColor: '#e5e7eb', flexShrink: 0 }} />
+              <Typography sx={{ fontSize: { xs: 14, sm: 14 }, wordBreak: 'break-word', lineHeight: 1.5, letterSpacing: '0.01em' }}>{order.customer.address}</Typography>
             </Stack>
           </Stack>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ fontSize: 16, fontWeight: 600, mb: 1 }}>Món đã đặt:</Typography>
+          <Typography sx={{ fontSize: { xs: 16, sm: 16 }, fontWeight: 700, mb: { xs: 1, sm: 1.2 }, letterSpacing: '-0.01em', color: '#18181b' }}>Món đã đặt:</Typography>
           {order.items.map((it, idx) => (
-            <Stack key={idx} direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 0.5 }}>
-              <Typography sx={{ fontSize: 14 }}>{it.name}</Typography>
-              <Typography sx={{ fontSize: 14 }}>{it.price.toLocaleString('vi-VN')} ₫</Typography>
+            <Stack key={idx} direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 0.8, gap: 1.5 }}>
+              <Typography sx={{ fontSize: { xs: 14, sm: 14 }, flex: 1, minWidth: 0, wordBreak: 'break-word', fontWeight: 500, letterSpacing: '0.01em' }}>{it.name}</Typography>
+              <Typography sx={{ fontSize: { xs: 14, sm: 14 }, flexShrink: 0, fontWeight: 600, letterSpacing: '-0.01em' }}>{it.price.toLocaleString('vi-VN')} ₫</Typography>
             </Stack>
           ))}
           <Divider sx={{ my: 1.5 }} />
           <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Typography sx={{ fontSize: 16 }}>Tổng cộng:</Typography>
-            <Typography sx={{ fontSize: 16, color: '#00a63e' }}>{order.total.toLocaleString('vi-VN')} ₫</Typography>
+            <Typography sx={{ fontSize: { xs: 15, sm: 16 }, fontWeight: 600, letterSpacing: '0.01em' }}>Tổng cộng:</Typography>
+            <Typography sx={{ fontSize: { xs: 16, sm: 17 }, color: '#00a63e', fontWeight: 700, letterSpacing: '-0.01em' }}>{order.total.toLocaleString('vi-VN')} ₫</Typography>
           </Stack>
-          <Typography sx={{ mt: 1, fontSize: 14, color: '#717182' }}>Thanh toán: {order.payment}</Typography>
+          <Typography sx={{ mt: 1, fontSize: { xs: 14, sm: 14 }, color: '#717182', fontWeight: 500, letterSpacing: '0.01em' }}>Thanh toán: {order.payment}</Typography>
         </Grid>
       </Grid>
 
       {order.note && (
-        <Box sx={{ mt: 2, backgroundColor: '#fff7db', borderRadius: '10px', px: 1.5, py: 1.5 }}>
-          <Typography sx={{ fontWeight: 700, fontSize: 14, mr: 1, display: 'inline' }}>Ghi chú:</Typography>
-          <Typography sx={{ fontSize: 14, display: 'inline' }}>{order.note}</Typography>
+        <Box sx={{ mt: 2, backgroundColor: '#fff7db', borderRadius: { xs: '8px', sm: '10px' }, px: { xs: 2, sm: 2 }, py: { xs: 1.5, sm: 1.5 } }}>
+          <Typography sx={{ fontWeight: 700, fontSize: { xs: 14, sm: 14 }, mr: 1, display: 'inline', letterSpacing: '0.01em' }}>Ghi chú:</Typography>
+          <Typography sx={{ fontSize: { xs: 14, sm: 14 }, display: 'inline', letterSpacing: '0.01em' }}>{order.note}</Typography>
         </Box>
       )}
 
-      <Box sx={{ mt: 2.5 }}>
-        <Divider sx={{ mb: 1.5 }} />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ mt: { xs: 2, sm: 2.5 } }}>
+        <Divider sx={{ mb: { xs: 1.5, sm: 1.5 } }} />
+        <Box sx={{ display: 'flex', justifyContent: { xs: 'stretch', sm: 'flex-end' } }}>
           {order.status === STATUS.PENDING ? (
             <Button
               variant="contained"
@@ -226,12 +232,14 @@ const OrderCard = ({ order, onAdvance }) => {
               sx={{
                 backgroundColor: '#F9704B',
                 '&:hover': { backgroundColor: '#e55a3a' },
-                borderRadius: '10px',
-                height: 38,
-                px: 2.2,
-                minWidth: 180,
+                borderRadius: { xs: '8px', sm: '10px' },
+                height: { xs: 46, sm: 40 },
+                px: { xs: 2.5, sm: 2.5 },
+                minWidth: { xs: '100%', sm: 180 },
                 textTransform: 'none',
-                fontWeight: 600
+                fontWeight: 600,
+                fontSize: { xs: '15px', sm: '15px' },
+                letterSpacing: '0.01em'
               }}
               onClick={() => onAdvance(order.id)}
             >
@@ -244,12 +252,14 @@ const OrderCard = ({ order, onAdvance }) => {
               sx={{
                 backgroundColor: '#00a63e',
                 '&:hover': { backgroundColor: '#049335' },
-                borderRadius: '10px',
-                height: 38,
-                px: 2.2,
-                minWidth: 160,
+                borderRadius: { xs: '8px', sm: '10px' },
+                height: { xs: 46, sm: 40 },
+                px: { xs: 2.5, sm: 2.5 },
+                minWidth: { xs: '100%', sm: 160 },
                 textTransform: 'none',
-                fontWeight: 600
+                fontWeight: 600,
+                fontSize: { xs: '15px', sm: '15px' },
+                letterSpacing: '0.01em'
               }}
               onClick={() => onAdvance(order.id)}
             >
@@ -264,13 +274,13 @@ const OrderCard = ({ order, onAdvance }) => {
 };
 
 const TabsBar = ({ tabs, current, onChange }) => (
-  <Box sx={{ backgroundColor: '#ececf0', borderRadius: '14px', height: 36, px: 0.5 }}>
+  <Box sx={{ backgroundColor: '#ececf0', borderRadius: { xs: '12px', sm: '14px' }, height: { xs: 44, sm: 38 }, px: 0.5 }}>
     <Box sx={{
       display: 'grid',
       gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))`,
       gap: 0.5,
       alignItems: 'center',
-      height: 36
+      height: '100%'
     }}>
       {tabs.map((t) => {
         const active = current === t.key;
@@ -282,16 +292,18 @@ const TabsBar = ({ tabs, current, onChange }) => (
             sx={{
               width: '100%',
               minWidth: 0,
-              px: 1.2,
-              py: 0.7,
-              height: 29,
-              borderRadius: '14px',
+              px: { xs: 1, sm: 1.2 },
+              py: { xs: 0.8, sm: 0.7 },
+              height: { xs: 37, sm: 31 },
+              borderRadius: { xs: '10px', sm: '12px' },
               textTransform: 'none',
-              fontSize: 14,
+              fontSize: { xs: 14, sm: 14 },
+              fontWeight: active ? 600 : 500,
               color: active ? '#030213' : '#030213',
               backgroundColor: active ? '#ffffff' : 'transparent',
               boxShadow: active ? '0 2px 6px rgba(0,0,0,0.08)' : 'none',
               border: active ? '0.8px solid rgba(0,0,0,0.06)' : '0.8px solid transparent',
+              letterSpacing: active ? '-0.01em' : '0.01em',
               '&:hover': {
                 backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.5)'
               }
@@ -342,18 +354,18 @@ const ShopOrders = () => {
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#f9fafb', p: { xs: 2, sm: 3, md: 4 } }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
-        <Box sx={{ mb: 2 }}>
-          <Typography variant="h4" sx={{ fontWeight: 700, fontSize: 24, mb: 0.5 }}>Quản lý đơn hàng</Typography>
-          <Typography sx={{ color: '#717182', fontSize: 16 }}>Theo dõi và xử lý đơn hàng của khách</Typography>
+        <Box sx={{ mb: { xs: 2.5, sm: 2.5 } }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: 24, sm: 26 }, mb: { xs: 0.8, sm: 1 }, letterSpacing: '-0.02em', color: '#18181b' }}>Quản lý đơn hàng</Typography>
+          <Typography sx={{ color: '#717182', fontSize: { xs: 15, sm: 16 }, fontWeight: 500, letterSpacing: '0.01em' }}>Theo dõi và xử lý đơn hàng của khách</Typography>
         </Box>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: { xs: 2, sm: 3 }, mb: 2.5 }}>
-          <StatCard label="Chờ xác nhận" value={counts.pending} color="#d08700" icon={<ScheduleIcon sx={{ color: '#d08700' }} />} />
-          <StatCard label="Đang chế biến" value={counts.cooking} color="#155dfc" icon={<CookingIcon sx={{ color: '#155dfc' }} />} />
-          <StatCard label="Hoàn tất" value={counts.done} color="#00a63e" icon={<CheckCircleIcon sx={{ color: '#00a63e' }} />} />
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, minmax(0, 1fr))' }, gap: { xs: 2, sm: 2.5 }, mb: { xs: 2.5, sm: 3 } }}>
+          <StatCard label="Chờ xác nhận" value={counts.pending} color="#d08700" icon={<ScheduleIcon sx={{ color: '#d08700', fontSize: { xs: 22, sm: 24 } }} />} />
+          <StatCard label="Đang chế biến" value={counts.cooking} color="#155dfc" icon={<CookingIcon sx={{ color: '#155dfc', fontSize: { xs: 22, sm: 24 } }} />} />
+          <StatCard label="Hoàn tất" value={counts.done} color="#00a63e" icon={<CheckCircleIcon sx={{ color: '#00a63e', fontSize: { xs: 22, sm: 24 } }} />} />
         </Box>
 
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: { xs: 2, sm: 2.5 } }}>
           <TabsBar tabs={tabs} current={currentTab} onChange={setCurrentTab} />
         </Box>
 

@@ -207,36 +207,36 @@ const VideoManagement = () => {
   };
 
   const VideoCard = ({ video }) => (
-    <Paper elevation={0} sx={{ borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', overflow: 'hidden', transition: 'box-shadow 220ms ease, transform 220ms ease', '&:hover': { boxShadow: '0 10px 26px rgba(0,0,0,0.08)', transform: 'translateY(-3px)' }, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Paper elevation={0} sx={{ borderRadius: { xs: '12px', sm: '14px' }, border: '1px solid rgba(0,0,0,0.06)', overflow: 'hidden', transition: 'box-shadow 220ms ease, transform 220ms ease', '&:hover': { boxShadow: '0 10px 26px rgba(0,0,0,0.08)', transform: 'translateY(-3px)' }, height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Media 16:9 */}
       <Box sx={{ position: 'relative', width: '100%', pt: '56.25%', backgroundImage: `url(${video.thumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.35) 100%)' }} />
         <Box sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Box sx={{ width: 52, height: 52, backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.12)' }}>
-            <PlayArrow sx={{ fontSize: 26, color: '#000' }} />
+          <Box sx={{ width: { xs: 56, sm: 52 }, height: { xs: 56, sm: 52 }, backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.12)' }}>
+            <PlayArrow sx={{ fontSize: { xs: 28, sm: 26 }, color: '#000' }} />
           </Box>
         </Box>
-        <Chip label={video.duration} size="small" sx={{ position: 'absolute', bottom: 10, right: 10, backgroundColor: 'rgba(0,0,0,0.75)', color: 'white', fontSize: '12px', height: '22px', borderRadius: '8px' }} />
+        <Chip label={video.duration} size="small" sx={{ position: 'absolute', bottom: 10, right: 10, backgroundColor: 'rgba(0,0,0,0.75)', color: 'white', fontSize: { xs: '13px', sm: '12px' }, height: { xs: '24px', sm: '22px' }, borderRadius: '8px', fontWeight: 600 }} />
       </Box>
       {/* Content */}
-      <Box sx={{ p: 2.2, display: 'flex', flexDirection: 'column', gap: 1.25, flexGrow: 1 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '17px', lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{video.title}</Typography>
-        <Typography variant="body2" sx={{ color: '#6b7280', fontSize: '14px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{video.description}</Typography>
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Chip label={video.status} size="small" sx={{ backgroundColor: video.statusColor, color: video.textColor, fontSize: '12px', height: '22px', borderRadius: '8px' }} />
-          <Chip label={video.category} size="small" sx={{ backgroundColor: '#f3f4f6', color: '#111827', fontSize: '12px', height: '22px', borderRadius: '8px', border: '0.8px solid rgba(0,0,0,0.06)' }} />
+      <Box sx={{ p: { xs: 2, sm: 2.5 }, display: 'flex', flexDirection: 'column', gap: { xs: 1, sm: 1.25 }, flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, fontSize: { xs: '16px', sm: '17px' }, lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', letterSpacing: '-0.01em', color: '#18181b' }}>{video.title}</Typography>
+        <Typography variant="body2" sx={{ color: '#6b7280', fontSize: { xs: '14px', sm: '14px' }, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.5, letterSpacing: '0.01em' }}>{video.description}</Typography>
+        <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" sx={{ gap: 0.5 }}>
+          <Chip label={video.status} size="small" sx={{ backgroundColor: video.statusColor, color: video.textColor, fontSize: { xs: '12px', sm: '12px' }, height: { xs: '24px', sm: '22px' }, borderRadius: '8px', fontWeight: 600 }} />
+          <Chip label={video.category} size="small" sx={{ backgroundColor: '#f3f4f6', color: '#111827', fontSize: { xs: '12px', sm: '12px' }, height: { xs: '24px', sm: '22px' }, borderRadius: '8px', border: '0.8px solid rgba(0,0,0,0.06)', fontWeight: 500 }} />
         </Stack>
         <Stack direction="row" spacing={1.5} alignItems="center" sx={{ color: '#6b7280' }}>
-          <Visibility sx={{ fontSize: 16 }} />
-          <Typography variant="body2" sx={{ fontSize: '13px' }}>{video.views.toLocaleString()} lượt xem · Ngày upload {video.uploadDate}</Typography>
+          <Visibility sx={{ fontSize: { xs: 17, sm: 16 } }} />
+          <Typography variant="body2" sx={{ fontSize: { xs: '13px', sm: '13px' }, letterSpacing: '0.01em' }}>{video.views.toLocaleString()} lượt xem · Ngày upload {video.uploadDate}</Typography>
         </Stack>
       </Box>
       {/* Actions bar */}
-      <Box sx={{ px: 2.2, pb: 2.2 }}>
-        <Box sx={{ backgroundColor: '#fafafa', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px', p: 1, display: 'flex', gap: 1 }}>
-          <Button onClick={() => openEditModal(video)} variant="outlined" startIcon={<Edit />} size="small" sx={{ flex: 1, height: 36, borderRadius: '999px', borderColor: 'rgba(0,0,0,0.12)' }}>Sửa</Button>
-          <Button onClick={() => toggleVideoStatus(video.id)} variant="outlined" size="small" sx={{ height: 36, borderRadius: '999px', borderColor: 'rgba(0,0,0,0.12)', color: video.status === 'Bản nháp' ? '#059669' : '#d97706', minWidth: video.status === 'Bản nháp' ? 72 : 56 }}>{video.status === 'Bản nháp' ? 'Đăng' : 'Ẩn'}</Button>
-          <Button onClick={() => requestDeleteVideo(video.id)} color="error" variant="outlined" size="small" sx={{ height: 36, borderRadius: '999px', borderColor: 'rgba(239,68,68,0.25)' }}>Xóa</Button>
+      <Box sx={{ px: { xs: 2, sm: 2.5 }, pb: { xs: 2, sm: 2.5 } }}>
+        <Box sx={{ backgroundColor: '#fafafa', border: '1px solid rgba(0,0,0,0.06)', borderRadius: { xs: '10px', sm: '12px' }, p: { xs: 1, sm: 1 }, display: 'flex', gap: { xs: 1, sm: 1 }, flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
+          <Button onClick={() => openEditModal(video)} variant="outlined" startIcon={<Edit />} size="small" sx={{ flex: { xs: '1 1 100%', sm: 1 }, height: { xs: 42, sm: 38 }, borderRadius: '999px', borderColor: 'rgba(0,0,0,0.12)', fontSize: { xs: '14px', sm: '14px' }, fontWeight: 500 }}>Sửa</Button>
+          <Button onClick={() => toggleVideoStatus(video.id)} variant="outlined" size="small" sx={{ flex: { xs: '1 1 45%', sm: 'auto' }, height: { xs: 42, sm: 38 }, borderRadius: '999px', borderColor: 'rgba(0,0,0,0.12)', color: video.status === 'Bản nháp' ? '#059669' : '#d97706', minWidth: video.status === 'Bản nháp' ? { xs: 72, sm: 72 } : { xs: 56, sm: 56 }, fontSize: { xs: '14px', sm: '14px' }, fontWeight: 500 }}>{video.status === 'Bản nháp' ? 'Đăng' : 'Ẩn'}</Button>
+          <Button onClick={() => requestDeleteVideo(video.id)} color="error" variant="outlined" size="small" sx={{ flex: { xs: '1 1 45%', sm: 'auto' }, height: { xs: 42, sm: 38 }, borderRadius: '999px', borderColor: 'rgba(239,68,68,0.25)', fontSize: { xs: '14px', sm: '14px' }, fontWeight: 500 }}>Xóa</Button>
         </Box>
       </Box>
     </Paper>
@@ -246,14 +246,18 @@ const VideoManagement = () => {
     <>
     <Box sx={{ minHeight: '100vh', backgroundColor: '#f9fafb', p: { xs: 2, sm: 3, md: 4 } }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 2 }}>
-          <Button onClick={() => setOpenUpload(true)} variant="contained" startIcon={<Add />} sx={{ backgroundColor: '#ad46ff', borderRadius: '10px', height: 40, fontSize: '14px', px: 2.2, '&:hover': { backgroundColor: '#9c3de6' } }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: { xs: 2.5, sm: 3 }, flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 2, sm: 0 } }}>
+          <Box sx={{ width: { xs: '100%', sm: 'auto' } }}>
+            <Typography variant="h5" sx={{ fontWeight: 700, fontSize: { xs: 24, sm: 26 }, mb: { xs: 0.8, sm: 1 }, letterSpacing: '-0.02em', color: '#18181b' }}>Video Reviews</Typography>
+            <Typography sx={{ color: '#717182', fontSize: { xs: 15, sm: 16 }, fontWeight: 500, letterSpacing: '0.01em' }}>Quản lý video đánh giá món ăn</Typography>
+          </Box>
+          <Button onClick={() => setOpenUpload(true)} variant="contained" startIcon={<Add />} sx={{ backgroundColor: '#ad46ff', borderRadius: { xs: '8px', sm: '10px' }, height: { xs: 46, sm: 42 }, fontSize: { xs: '15px', sm: '15px' }, fontWeight: 600, px: { xs: 2.5, sm: 2.5 }, width: { xs: '100%', sm: 'auto' }, '&:hover': { backgroundColor: '#9c3de6' } }}>
             Upload video mới
           </Button>
         </Box>
-        <Grid container spacing={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
           {videos.map((video) => (
-            <Grid item xs={12} sm={4} md={4} lg={4} key={video.id}>
+            <Grid item xs={12} sm={6} md={4} lg={4} key={video.id}>
               <VideoCard video={video} />
             </Grid>
           ))}
@@ -261,10 +265,21 @@ const VideoManagement = () => {
       </Box>
     </Box>
     {/* Modal Upload */}
-    <Dialog open={openUpload} onClose={() => (!uploading ? setOpenUpload(false) : null)} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ fontWeight: 700 }}>Upload video mới</DialogTitle>
+    <Dialog 
+      open={openUpload} 
+      onClose={() => (!uploading ? setOpenUpload(false) : null)} 
+      maxWidth="sm" 
+      fullWidth
+      sx={{
+        '& .MuiDialog-paper': {
+          m: { xs: 2, sm: 4 },
+          maxHeight: { xs: 'calc(100% - 32px)', sm: 'calc(100% - 64px)' }
+        }
+      }}
+    >
+      <DialogTitle sx={{ fontWeight: 700, fontSize: { xs: '18px', sm: '20px' } }}>Upload video mới</DialogTitle>
       <DialogContent dividers sx={{ pt: 2 }}>
-        <Typography variant="body2" sx={{ color: '#717182', mb: 2 }}>Thêm video review cho món ăn của bạn</Typography>
+        <Typography variant="body2" sx={{ color: '#717182', mb: 2, fontSize: { xs: '13px', sm: '14px' } }}>Thêm video review cho món ăn của bạn</Typography>
 
         {/* Khu vực video */}
         <Typography sx={{ fontWeight: 600, mb: 1 }}>Video</Typography>
@@ -306,31 +321,35 @@ const VideoManagement = () => {
         </Box>
 
         {/* Form thông tin */}
-        <TextField label="Tiêu đề video" placeholder="VD: Review Phở bò đặc biệt" fullWidth sx={{ mb: 2 }} value={title} onChange={(e) => setTitle(e.target.value)} />
-        <TextField label="Mô tả" placeholder="Mô tả chi tiết về video..." fullWidth multiline minRows={3} sx={{ mb: 2 }} value={description} onChange={(e) => setDescription(e.target.value)} />
-        <Box sx={{ display: 'flex', gap: 2, mb: 1 }}>
-          <FormControl fullWidth>
-            <InputLabel id="dish-select">Liên kết món ăn</InputLabel>
-            <Select labelId="dish-select" label="Liên kết món ăn" value={linkedDish} onChange={(e) => setLinkedDish(e.target.value)}>
-              <MenuItem value="none">Không liên kết</MenuItem>
-              <MenuItem value="Phở bò">Phở bò</MenuItem>
-              <MenuItem value="Bún bò Huế">Bún bò Huế</MenuItem>
-              <MenuItem value="Bánh mì">Bánh mì</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField label="Thời lượng" placeholder="VD: 2:35" value={duration} onChange={(e) => setDuration(e.target.value)} fullWidth />
-        </Box>
+        <TextField label="Tiêu đề video" placeholder="VD: Review Phở bò đặc biệt" fullWidth sx={{ mb: 2 }} value={title} onChange={(e) => setTitle(e.target.value)} size="small" />
+        <TextField label="Mô tả" placeholder="Mô tả chi tiết về video..." fullWidth multiline minRows={3} sx={{ mb: 2 }} value={description} onChange={(e) => setDescription(e.target.value)} size="small" />
+        <Grid container spacing={2} sx={{ mb: 1 }}>
+          <Grid item xs={12} sm={6}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="dish-select">Liên kết món ăn</InputLabel>
+              <Select labelId="dish-select" label="Liên kết món ăn" value={linkedDish} onChange={(e) => setLinkedDish(e.target.value)}>
+                <MenuItem value="none">Không liên kết</MenuItem>
+                <MenuItem value="Phở bò">Phở bò</MenuItem>
+                <MenuItem value="Bún bò Huế">Bún bò Huế</MenuItem>
+                <MenuItem value="Bánh mì">Bánh mì</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField label="Thời lượng" placeholder="VD: 2:35" value={duration} onChange={(e) => setDuration(e.target.value)} fullWidth size="small" />
+          </Grid>
+        </Grid>
         {uploading && (
           <Box sx={{ mt: 1 }}>
             <LinearProgress variant="determinate" value={progress} />
           </Box>
         )}
       </DialogContent>
-      <DialogActions>
-        <Button disabled={uploading} onClick={() => { setOpenUpload(false); resetForm(); }} sx={{ color: '#111827' }}>Hủy</Button>
-        <Button onClick={handleUpload} disabled={!isValid || uploading} variant="contained" startIcon={<CloudUpload />} sx={{ backgroundColor: '#ad46ff', '&:hover': { backgroundColor: '#9c3de6' } }}>
+      <DialogActions sx={{ flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 1, sm: 0 }, p: { xs: 2, sm: 1.5 } }}>
+        <Button onClick={handleUpload} disabled={!isValid || uploading} variant="contained" startIcon={<CloudUpload />} sx={{ backgroundColor: '#ad46ff', '&:hover': { backgroundColor: '#9c3de6' }, width: { xs: '100%', sm: 'auto' }, order: { xs: 1, sm: 0 } }}>
           Upload video
         </Button>
+        <Button disabled={uploading} onClick={() => { setOpenUpload(false); resetForm(); }} sx={{ color: '#111827', width: { xs: '100%', sm: 'auto' }, order: { xs: 2, sm: 0 } }}>Hủy</Button>
       </DialogActions>
     </Dialog>
     <Snackbar open={toast.open} autoHideDuration={2600} onClose={() => setToast((t) => ({ ...t, open: false }))} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
@@ -350,10 +369,21 @@ const VideoManagement = () => {
       </DialogActions>
     </Dialog>
     {/* Modal Chỉnh sửa */}
-    <Dialog open={openEdit} onClose={() => setOpenEdit(false)} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ fontWeight: 700 }}>Chỉnh sửa video</DialogTitle>
+    <Dialog 
+      open={openEdit} 
+      onClose={() => setOpenEdit(false)} 
+      maxWidth="sm" 
+      fullWidth
+      sx={{
+        '& .MuiDialog-paper': {
+          m: { xs: 2, sm: 4 },
+          maxHeight: { xs: 'calc(100% - 32px)', sm: 'calc(100% - 64px)' }
+        }
+      }}
+    >
+      <DialogTitle sx={{ fontWeight: 700, fontSize: { xs: '18px', sm: '20px' } }}>Chỉnh sửa video</DialogTitle>
       <DialogContent dividers sx={{ pt: 2 }}>
-        <Typography variant="body2" sx={{ color: '#717182', mb: 2 }}>Thêm video review cho món ăn của bạn</Typography>
+        <Typography variant="body2" sx={{ color: '#717182', mb: 2, fontSize: { xs: '13px', sm: '14px' } }}>Cập nhật thông tin video của bạn</Typography>
 
         {/* Video */}
         <Typography sx={{ fontWeight: 600, mb: 1 }}>Video</Typography>
@@ -382,26 +412,30 @@ const VideoManagement = () => {
         </Box>
 
         {/* Form */}
-        <TextField label="Tiêu đề video" fullWidth sx={{ mb: 2 }} value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
-        <TextField label="Mô tả" fullWidth multiline minRows={3} sx={{ mb: 2 }} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} />
-        <Box sx={{ display: 'flex', gap: 2, mb: 1 }}>
-          <FormControl fullWidth>
-            <InputLabel id="dish-edit-select">Liên kết món ăn</InputLabel>
-            <Select labelId="dish-edit-select" label="Liên kết món ăn" value={editLinkedDish} onChange={(e) => setEditLinkedDish(e.target.value)}>
-              <MenuItem value="none">Không liên kết</MenuItem>
-              <MenuItem value="Phở bò">Phở bò</MenuItem>
-              <MenuItem value="Bún bò Huế">Bún bò Huế</MenuItem>
-              <MenuItem value="Bánh mì">Bánh mì</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField label="Thời lượng" value={editDuration} onChange={(e) => setEditDuration(e.target.value)} fullWidth />
-        </Box>
+        <TextField label="Tiêu đề video" fullWidth sx={{ mb: 2 }} value={editTitle} onChange={(e) => setEditTitle(e.target.value)} size="small" />
+        <TextField label="Mô tả" fullWidth multiline minRows={3} sx={{ mb: 2 }} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} size="small" />
+        <Grid container spacing={2} sx={{ mb: 1 }}>
+          <Grid item xs={12} sm={6}>
+            <FormControl fullWidth size="small">
+              <InputLabel id="dish-edit-select">Liên kết món ăn</InputLabel>
+              <Select labelId="dish-edit-select" label="Liên kết món ăn" value={editLinkedDish} onChange={(e) => setEditLinkedDish(e.target.value)}>
+                <MenuItem value="none">Không liên kết</MenuItem>
+                <MenuItem value="Phở bò">Phở bò</MenuItem>
+                <MenuItem value="Bún bò Huế">Bún bò Huế</MenuItem>
+                <MenuItem value="Bánh mì">Bánh mì</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField label="Thời lượng" value={editDuration} onChange={(e) => setEditDuration(e.target.value)} fullWidth size="small" />
+          </Grid>
+        </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={() => setOpenEdit(false)} sx={{ color: '#111827' }}>Hủy</Button>
-        <Button onClick={handleSaveEdit} variant="contained" startIcon={<CloudUpload />} sx={{ backgroundColor: '#ad46ff', '&:hover': { backgroundColor: '#9c3de6' } }}>
+      <DialogActions sx={{ flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 1, sm: 0 }, p: { xs: 2, sm: 1.5 } }}>
+        <Button onClick={handleSaveEdit} variant="contained" startIcon={<CloudUpload />} sx={{ backgroundColor: '#ad46ff', '&:hover': { backgroundColor: '#9c3de6' }, width: { xs: '100%', sm: 'auto' }, order: { xs: 1, sm: 0 } }}>
           Cập nhật video
         </Button>
+        <Button onClick={() => setOpenEdit(false)} sx={{ color: '#111827', width: { xs: '100%', sm: 'auto' }, order: { xs: 2, sm: 0 } }}>Hủy</Button>
       </DialogActions>
     </Dialog>
     </>
